@@ -7,4 +7,6 @@ export class FileElement {
   hasData?: boolean
   data?: string
   dataType?: string
+  shared?: boolean
+  sharedWith?: string
 }

@@ -21,6 +21,12 @@
     >
         file_upload
     </mat-icon>
+    <mat-icon
+        class="pointer"
+        id="fileSearch"
+    >
+        search
+    </mat-icon>
 </mat-toolbar>
 
 <div
@@ -111,6 +117,13 @@
         >
             <mat-icon>download</mat-icon>
             <span>Download</span>
+        </button>
+        <button
+            mat-menu-item
+            (click)="shareElement(element)"
+        >
+            <mat-icon>share</mat-icon>
+            <span>Share</span>
         </button>
     </ng-template>
 </mat-menu>

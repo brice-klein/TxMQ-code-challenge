@@ -135,6 +135,10 @@ export class AppComponent {
     this.updateFileElementQuery();
   }
 
+  shareElement(element: FileElement) {
+    this.fileService.share(element)
+  }
+
   updateFileElementQuery() {
     this.fileElements = this.fileService.queryInFolder(this.currentRoot ? this.currentRoot.id || '' : 'root');
   }

@@ -73,6 +73,41 @@ export class FileService {
     localStorage.setItem('files', payload);
   }
 
+  share(fileElement: FileElement, isNested: boolean = false, filesArr: Array<FileElement> = []) {
+    console.log('shared', fileElement)
+    if (filesArr && isNested) {
+      let payload = JSON.stringify(filesArr);
+      localStorage.setItem('files', payload)
+    }
+    let files = JSON.parse(localStorage.getItem('files') || '')
+    let parent
+    for (var i = 0; i < files.length; i++) {
+      if (files[i].id === fileElement.id) {
+        console.log(86, true)
+        files[i].shared = true;
+        parent = files[i]
+      }
+    }
+    if (parent.isFolder) {
+      for (var j = 0; j < files.length; j++) {
+        if (files[j].parent === parent.id) {
+          files[j].shared = true
+          console.log(files[j])
+          if (files[j].isFolder) {
+            this.share(files[j], true, files)
+          } else {
+            files[j].shared = true;
+          }
+        }
+      }
+      let payload = JSON.stringify(files);
+      localStorage.setItem('files', payload);
+    } else {
+      let payload = JSON.stringify(files);
+      localStorage.setItem('files', payload)
+    }
+  }
+
   private querySubject: BehaviorSubject<FileElement[]>
   queryInFolder(folderId: string) {
     console.log('query')
@@ -91,6 +126,26 @@ export class FileService {
     }
     return this.querySubject.asObservable()
   }
+
+  // private queryName: BehaviorSubject<FileElement[]>
+  // queryName(folderId: string) {
+  //   console.log('query')
+  //   const result: FileElement[] = []
+  //   let files = JSON.parse(localStorage.getItem('files') || '');
+
+  //   for (var i = 0; i < files.length; i++) {
+  //     if (files[i].parent === folderId && files[i].owner === localStorage.getItem('user')) {
+  //       result.push(files[i])
+  //     }
+  //   }
+  //   if (!this.querySubject) {
+  //     this.querySubject = new BehaviorSubject(result)
+  //   } else {
+  //     this.querySubject.next(result)
+  //   }
+  //   return this.querySubject.asObservable()
+  // }
+
 
   //check contents
   //for all ocntent add shared with user to users list
