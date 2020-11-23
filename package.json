@@ -1,0 +1,22 @@
+{
+  "name": "txmq-code-challenge",
+  "version": "1.0.0",
+  "description": "Brice Klein: TxMQ code challenge project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brice-klein/TxMQ-code-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brice-klein/TxMQ-code-challenge/issues"
+  },
+  "homepage": "https://github.com/brice-klein/TxMQ-code-challenge#readme",
+  "dependencies": {
+    "@types/uuid": "^8.3.0"
+  }
+}

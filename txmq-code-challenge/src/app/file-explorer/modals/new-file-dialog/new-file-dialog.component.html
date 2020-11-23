@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Upload new file</h1>
+
+<mat-dialog-content>
+    <mat-form-field class="example-full-width">
+        <input
+            matInput
+            placeholder="File Name"
+            [(ngModel)]="fileName"
+        >
+        <input
+            type="file"
+            placeholder="uup"
+            (change)="onFileUpload($event)"
+        >
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button
+        mat-raised-button
+        mat-dialog-close
+    >
+        Cancel
+    </button>
+    <button
+        mat-raised-button
+        [mat-dialog-close]="{fileName: fileName, data: data, dataType: dataType}"
+        color="primary"
+    >
+        OK
+    </button>
+</mat-dialog-actions>

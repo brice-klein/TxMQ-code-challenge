@@ -1,0 +1,86 @@
+<div>
+    <div
+        id="login"
+        *ngIf="this.login"
+    >
+        <h5 class="card-title">Login</h5>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input
+                type="text"
+                class="form-control"
+                id="email"
+                placeholder="Email Address"
+                [(ngModel)]="userEmail"
+            >
+        </div>
+        <div class="form-group">
+            <label for=password>Password</label>
+            <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Password"
+                [(ngModel)]="userPassword"
+            >
+        </div>
+        <button
+            type="submit"
+            class="btn btn-primary"
+            (click)="tryLogin()"
+        >
+            Login
+        </button>
+        <button (click)="this.login = false; this.signUp = true">sign up</button>
+    </div>
+
+    <div
+        id="sign-up"
+        *ngIf="this.signUp"
+    >
+        <h5 class="card-title">Sign Up</h5>
+        <div class="form-group">
+            <label for="newUserName">Name</label>
+            <input
+                type="text"
+                class="form-control"
+                id="email"
+                placeholder="Email Address"
+                [(ngModel)]="newUserName"
+            >
+        </div>
+        <div class="form-group">
+            <label for="newUserEmail">Email</label>
+            <input
+                type="text"
+                class="form-control"
+                id="email"
+                placeholder="Email Address"
+                [(ngModel)]="newUserEmail"
+            >
+        </div>
+        <div class="form-group">
+            <label for="newUserPassword">Password</label>
+            <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Password"
+                [(ngModel)]="newUserPassword"
+            >
+        </div>
+        <button
+            type="submit"
+            class="btn btn-primary"
+            (click)="createUser()"
+        >
+            Finish
+        </button>
+        <button
+            type="reset"
+            (click)="this.signUp = false; this.login = true"
+        >
+            cancel
+        </button>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div id="app">
+    <app-login-signup #user></app-login-signup>
+    <app-user-view *ngIf="user.userID"></app-user-view>
+    <file-explorer
+        [fileElements]="fileElements | async"
+        [path]="currentPath"
+        [canNavigateUp]="canNavigateUp"
+        (folderAdded)="addFolder($event)"
+        (fileAdded)="addFile($event)"
+        (elementRemoved)="removeElement($event)"
+        (elementDownloaded)="downloadElement($event)"
+        (navigatedDown)="navigateToFolder($event)"
+        (navigatedUp)="navigateUp()"
+        (elementRenamed)="renameElement($event)"
+        (elementMoved)="moveElement($event)"
+    >
+
+    </file-explorer>
+</div>
