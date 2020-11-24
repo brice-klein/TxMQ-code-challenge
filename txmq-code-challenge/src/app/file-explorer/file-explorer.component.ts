@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NewFolderDialogComponent } from './modals/new-folder-dialog/new-folder-dialog.component';
 import { RenameDialogComponent } from './modals/rename-dialog/rename-dialog.component';
 import { NewFileDialogComponent } from './modals/new-file-dialog/new-file-dialog.component'
+import { ShareDialogComponent } from './modals/share-dialog/share-dialog.component'
 import { EMLINK } from 'constants'
 import { timeStamp } from 'console'
 
@@ -29,7 +30,7 @@ export class FileExplorerComponent {
 
   @Output() folderAdded = new EventEmitter<{ name: string }>()
   @Output() fileAdded = new EventEmitter<{ name: string, isFolder: boolean, data?: string, dataType: string }>()
-  @Output() elementShared = new EventEmitter<FileElement>()
+  @Output() elementShared = new EventEmitter<{ fileElement: FileElement, sharedWith: string }>()
   @Output() elementRemoved = new EventEmitter<FileElement>()
   @Output() elementRenamed = new EventEmitter<FileElement>()
   @Output() elementDownloaded = new EventEmitter<FileElement>()
@@ -49,7 +50,13 @@ export class FileExplorerComponent {
   }
 
   shareElement(element: FileElement) {
-    this.elementShared.emit(element)
+    let dialogRef = this.dialog.open(ShareDialogComponent);
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        // element.sharedWith?.push(res)
+        this.elementShared.emit({ fileElement: element, sharedWith: res })
+      }
+    })
   }
 
   navigate(element: FileElement) {

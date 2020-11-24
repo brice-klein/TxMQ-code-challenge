@@ -8,5 +8,5 @@ export class FileElement {
   data?: string
   dataType?: string
   shared?: boolean
-  sharedWith?: string
+  sharedWith?: string[];
 }

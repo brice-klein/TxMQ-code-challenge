@@ -135,8 +135,8 @@ export class AppComponent {
     this.updateFileElementQuery();
   }
 
-  shareElement(element: FileElement) {
-    this.fileService.share(element)
+  shareElement(fileAndUser: any) {
+    this.fileService.share(fileAndUser.fileElement, fileAndUser.sharedWith)
   }
 
   updateFileElementQuery() {

@@ -14,6 +14,7 @@ export interface IFileService {
   update(id: string, update: Partial<FileElement>): string
   queryInFolder(folderId: string): Observable<FileElement[]>
   get(id: string): FileElement
+  share(fileElement: FileElement, user: string, isNested: boolean, filesArr: Array<FileElement>): string
 }
 
 @Injectable({
@@ -73,36 +74,58 @@ export class FileService {
     localStorage.setItem('files', payload);
   }
 
-  share(fileElement: FileElement, isNested: boolean = false, filesArr: Array<FileElement> = []) {
-    console.log('shared', fileElement)
-    if (filesArr && isNested) {
-      let payload = JSON.stringify(filesArr);
-      localStorage.setItem('files', payload)
-    }
-    let files = JSON.parse(localStorage.getItem('files') || '')
+  share(fileElement: FileElement, user: string, fileArr: FileElement[]) {
+    let files
     let parent
-    for (var i = 0; i < files.length; i++) {
-      if (files[i].id === fileElement.id) {
-        console.log(86, true)
-        files[i].shared = true;
-        parent = files[i]
+    if (!fileArr) {
+      files = JSON.parse(localStorage.getItem('files') || '')
+    } else {
+      files = fileArr
+    }
+    let users = JSON.parse(localStorage.getItem('users') || '');
+    for (var i = 0; i < users.length; i++) {
+      if (users[i].email === user) {
+        user = users[i].id;
       }
     }
+
+    for (var i = 0; i < files.length; i++) {
+      console.log(95, ' loop thru ', files[i])
+      if (files[i].id === fileElement.id) {
+        files[i].shared = true;
+        if (!files[i].sharedWith) {
+          files[i].sharedWith = [];
+        }
+        files[i].sharedWith.push(user)
+        parent = files[i]
+        break;
+      }
+    }
+
     if (parent.isFolder) {
       for (var j = 0; j < files.length; j++) {
         if (files[j].parent === parent.id) {
           files[j].shared = true
-          console.log(files[j])
+          if (!files[j].sharedWith) {
+            files[j].sharedWith = [];
+          }
+          files[j].sharedWith.push(user)
           if (files[j].isFolder) {
-            this.share(files[j], true, files)
+            console.log(108, files[j])
+            let payload = JSON.stringify(files);
+            localStorage.setItem('files', payload)
+            this.share(files[j], user, files)
           } else {
+            console.log('file')
             files[j].shared = true;
+            files[j].sharedWith.push(user)
+            let payload = JSON.stringify(files);
+            localStorage.setItem('files', payload)
           }
         }
       }
-      let payload = JSON.stringify(files);
-      localStorage.setItem('files', payload);
     } else {
+
       let payload = JSON.stringify(files);
       localStorage.setItem('files', payload)
     }

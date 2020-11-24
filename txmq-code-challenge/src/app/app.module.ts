@@ -16,6 +16,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { NewFolderDialogComponent } from './file-explorer/modals/new-folder-dialog/new-folder-dialog.component';
 import { NewFileDialogComponent } from './file-explorer/modals/new-file-dialog/new-file-dialog.component';
+import { ShareDialogComponent } from './file-explorer/modals/share-dialog/share-dialog.component';
 import { RenameDialogComponent } from './file-explorer/modals/rename-dialog/rename-dialog.component';
 import { MatButtonModule } from '@angular/material/button'
 import { FileExplorerComponent } from './file-explorer/file-explorer.component';
@@ -28,7 +29,8 @@ import { FileExplorerComponent } from './file-explorer/file-explorer.component';
     FileExplorerComponent,
     NewFolderDialogComponent,
     RenameDialogComponent,
-    NewFileDialogComponent
+    NewFileDialogComponent,
+    ShareDialogComponent
   ],
   imports: [
     BrowserModule,
