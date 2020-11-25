@@ -97,6 +97,8 @@ export class FileService {
           files[i].sharedWith = [];
         }
         files[i].sharedWith.push(user)
+        let payload = JSON.stringify(files);
+        localStorage.setItem('files', payload)
         parent = files[i]
         break;
       }

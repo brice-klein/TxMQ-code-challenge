@@ -140,7 +140,8 @@ export class AppComponent {
   }
 
   shareElement(fileAndUser: any) {
-    this.fileService.share(fileAndUser.fileElement, fileAndUser.sharedWith, [])
+    var files = JSON.parse(localStorage.getItem('files') as any)
+    this.fileService.share(fileAndUser.fileElement, fileAndUser.sharedWith, files)
   }
 
   updateFileElementQuery() {

@@ -1,0 +1,5 @@
+11/18: 5 hours of work. 4 hours of general research 1 hour setting up application
+11/19: 5 hours of work. Got initial file structure working w/o option to upload files.
+11/20: 5 hours of work. Began work on uploading files. Refactored log in. Refactored share to recursively share all folders and files contained within parent folder.
+11/23: 5 hours of work. Continued work on uploading/downloading files feature.
+11/24: 5 hours of work. Finished work on uploading downloading files feature. Began CSS styling.
