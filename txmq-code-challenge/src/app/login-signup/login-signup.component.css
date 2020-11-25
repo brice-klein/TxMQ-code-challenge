@@ -1,0 +1,19 @@
+#login-signup {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#login {
+  background-color: white;
+  padding: 120px;
+  border-radius: 5px;
+}
+
+#sign-up {
+  background-color: white;
+  padding: 120px;
+  border-radius: 5px;
+}

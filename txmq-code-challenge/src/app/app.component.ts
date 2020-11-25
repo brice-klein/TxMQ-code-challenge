@@ -16,6 +16,7 @@ export class AppComponent {
 
   constructor(public fileService: FileService) { }
 
+  user: string;
   currentRoot: FileElement;
   currentPath: string;
   canNavigateUp = false;
@@ -40,7 +41,10 @@ export class AppComponent {
   }
 
   ngOnChanges() {
-
+    this.user = '';
+    if (localStorage.getItem('user')) {
+      this.user = localStorage.getItem('user') || '';
+    }
   }
 
   addFolder(folder: { name: string }) {
@@ -136,7 +140,7 @@ export class AppComponent {
   }
 
   shareElement(fileAndUser: any) {
-    this.fileService.share(fileAndUser.fileElement, fileAndUser.sharedWith)
+    this.fileService.share(fileAndUser.fileElement, fileAndUser.sharedWith, [])
   }
 
   updateFileElementQuery() {

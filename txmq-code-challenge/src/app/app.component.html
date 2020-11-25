@@ -1,7 +1,8 @@
 <div id="app">
     <app-login-signup #user></app-login-signup>
-    <app-user-view *ngIf="user.userID"></app-user-view>
+    <app-user-view></app-user-view>
     <file-explorer
+        *ngIf="user.userID"
         [fileElements]="fileElements | async"
         [path]="currentPath"
         [canNavigateUp]="canNavigateUp"

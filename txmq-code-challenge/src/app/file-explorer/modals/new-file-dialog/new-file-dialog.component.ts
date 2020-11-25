@@ -21,7 +21,7 @@ export class NewFileDialogComponent implements OnInit {
     this.reader.onload = this.handleFileRead.bind(this);
 
   }
-  onFileUpload(event) {
+  onFileUpload(event: any) {
     console.log('onchange file upload- ', event)
     console.log(event.target.dataset);
 
@@ -43,7 +43,7 @@ export class NewFileDialogComponent implements OnInit {
     // this.data = data;
   }
 
-  handleFileRead(event) {
+  handleFileRead(event: any) {
     // console.log('42: handleFileRead-', event.target.result)
     // var txt = event.srcElement.result;
     // console.log('txt', txt)

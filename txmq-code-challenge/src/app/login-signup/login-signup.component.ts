@@ -15,7 +15,7 @@ export class LoginSignupComponent implements OnInit {
 
   userEmail = '';
   userPassword = '';
-  userID = null;
+  userID = '';
 
   signUp = false;
   login = true;
@@ -47,6 +47,7 @@ export class LoginSignupComponent implements OnInit {
       if (users[i].email === this.userEmail && users[i].password === this.userPassword) {
         console.log(true, users[i].id)
         localStorage.setItem('user', users[i].id)
+        this.userID = users[i].id;
         this.login = false;
         this.signUp = false;
       }
