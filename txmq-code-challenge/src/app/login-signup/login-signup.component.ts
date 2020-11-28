@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-login-signup',
@@ -19,6 +19,8 @@ export class LoginSignupComponent implements OnInit {
 
   signUp = false;
   login = true;
+
+  @Output() private onChange: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit(): void {
     if (!localStorage.getItem('users')) {
@@ -50,6 +52,7 @@ export class LoginSignupComponent implements OnInit {
         this.userID = users[i].id;
         this.login = false;
         this.signUp = false;
+        this.onChange.emit(this.userID)
       }
     }
   }

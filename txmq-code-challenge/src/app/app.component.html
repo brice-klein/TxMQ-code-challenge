@@ -3,9 +3,11 @@
     <app-user-view></app-user-view>
     <file-explorer
         *ngIf="user.userID"
+        [user]="user.userID"
         [fileElements]="fileElements | async"
         [path]="currentPath"
         [canNavigateUp]="canNavigateUp"
+        (userChanged)="changeUser()"
         (folderAdded)="addFolder($event)"
         (fileAdded)="addFile($event)"
         (elementRemoved)="removeElement($event)"

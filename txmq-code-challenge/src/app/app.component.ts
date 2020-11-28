@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { FileElement } from './file-explorer/model/file-element'
 import { Observable } from 'rxjs'
 import { FileService } from './service/file.service'
+import { threadId } from 'worker_threads';
 
 
 
@@ -38,6 +39,11 @@ export class AppComponent {
     } else {
       this.updateFileElementQuery();
     }
+    this.user = '';
+    if (localStorage.getItem('user')) {
+      this.user = localStorage.getItem('user') || '';
+    }
+    console.log('onInit- ', this.user)
   }
 
   ngOnChanges() {
@@ -45,6 +51,12 @@ export class AppComponent {
     if (localStorage.getItem('user')) {
       this.user = localStorage.getItem('user') || '';
     }
+    console.log('onChangges- ', this.user)
+    this.updateFileElementQuery();
+  }
+
+  changeUser() {
+    this.updateFileElementQuery()
   }
 
   addFolder(folder: { name: string }) {
@@ -52,12 +64,12 @@ export class AppComponent {
     this.updateFileElementQuery();
   }
 
-  addFile(file: { name: string, data: string, dataType: string }) {
+  addFile(file: { name: string, data?: string | undefined, dataType: string }) {
     this.fileService.add({ isFolder: false, name: file.name, data: file.data, dataType: file.dataType, parent: this.currentRoot ? this.currentRoot.id : 'root' });
     this.updateFileElementQuery();
   }
 
-  dataURItoBlob(dataURI) {
+  dataURItoBlob(dataURI: any) {
     // convert base64 to raw binary data held in a string
     // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
     var byteString = atob(dataURI.split(',')[1]);
@@ -119,7 +131,7 @@ export class AppComponent {
 
   navigateUp() {
     if (this.currentRoot && this.currentRoot.parent === 'root') {
-      this.currentRoot = null;
+      this.currentRoot = null as any;
       this.canNavigateUp = false;
       this.updateFileElementQuery();
     } else {

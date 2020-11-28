@@ -22,14 +22,16 @@ import { timeStamp } from 'console'
 })
 export class FileExplorerComponent {
   constructor(public dialog: MatDialog) { }
+  ;
 
-
-  @Input() fileElements?: FileElement[]
-  @Input() canNavigateUp?: string
+  @Input() fileElements?: any;
+  @Input() canNavigateUp?: boolean
   @Input() path?: string
+  @Input() user?: string
 
+  @Output() userChanged = new EventEmitter<string>();
   @Output() folderAdded = new EventEmitter<{ name: string }>()
-  @Output() fileAdded = new EventEmitter<{ name: string, isFolder: boolean, data?: string, dataType: string }>()
+  @Output() fileAdded = new EventEmitter<{ name: string; isFolder: boolean; data?: string | undefined; dataType: string; }>()
   @Output() elementShared = new EventEmitter<{ fileElement: FileElement, sharedWith: string }>()
   @Output() elementRemoved = new EventEmitter<FileElement>()
   @Output() elementRenamed = new EventEmitter<FileElement>()
@@ -40,6 +42,15 @@ export class FileExplorerComponent {
   }>()
   @Output() navigatedDown = new EventEmitter<FileElement>()
   @Output() navigatedUp = new EventEmitter()
+
+  ngOnChanges() {
+    this.user = '';
+    if (localStorage.getItem('user')) {
+      this.user = localStorage.getItem('user') || '';
+    }
+    console.log('file explorer onChanges- ', this.user)
+    this.userChanged.emit(this.user)
+  }
 
   deleteElement(element: FileElement) {
     this.elementRemoved.emit(element)

@@ -181,7 +181,7 @@ export class FileService {
     console.log('get')
     let files = JSON.parse(localStorage.getItem('files') || '');
     for (var i = 0; i < files.length; i++) {
-      if (files[i].id === id) {
+      if (files[i].id === id && files[i].owner === localStorage.getItem('user')) {
         return files[i]
       }
     }
