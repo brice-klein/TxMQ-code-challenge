@@ -6,7 +6,7 @@
         id="login"
         *ngIf="this.login"
     >
-        <h5 class="card-title">Login</h5>
+        <h5 class="card-title">Sign In</h5>
         <div class="form-group">
             <label for="email">Email</label>
             <input
@@ -32,9 +32,9 @@
             class="btn btn-primary"
             (click)="tryLogin()"
         >
-            Login
+            Sign In
         </button>
-        <button (click)="this.login = false; this.signUp = true">sign up</button>
+        <button (click)="this.login = false; this.signUp = true">Sign Up</button>
     </div>
 
     <div

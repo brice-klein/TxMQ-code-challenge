@@ -136,11 +136,13 @@ export class FileService {
   private querySubject: BehaviorSubject<FileElement[]>
   queryInFolder(folderId: string) {
     console.log('query')
+    var user = localStorage.getItem('user')
     const result: FileElement[] = []
     let files = JSON.parse(localStorage.getItem('files') || '');
 
     for (var i = 0; i < files.length; i++) {
-      if (files[i].parent === folderId && files[i].owner === localStorage.getItem('user')) {
+      if (files[i].parent === folderId && files[i].owner === user) {
+        console.log(true, files[i])
         result.push(files[i])
       }
     }
@@ -152,36 +154,12 @@ export class FileService {
     return this.querySubject.asObservable()
   }
 
-  // private queryName: BehaviorSubject<FileElement[]>
-  // queryName(folderId: string) {
-  //   console.log('query')
-  //   const result: FileElement[] = []
-  //   let files = JSON.parse(localStorage.getItem('files') || '');
-
-  //   for (var i = 0; i < files.length; i++) {
-  //     if (files[i].parent === folderId && files[i].owner === localStorage.getItem('user')) {
-  //       result.push(files[i])
-  //     }
-  //   }
-  //   if (!this.querySubject) {
-  //     this.querySubject = new BehaviorSubject(result)
-  //   } else {
-  //     this.querySubject.next(result)
-  //   }
-  //   return this.querySubject.asObservable()
-  // }
-
-
-  //check contents
-  //for all ocntent add shared with user to users list
-  //if the curent content is folder
-  //recursive call to this function passing in its id
-
   get(id: string) {
     console.log('get')
     let files = JSON.parse(localStorage.getItem('files') || '');
+    var user = localStorage.getItem('user')
     for (var i = 0; i < files.length; i++) {
-      if (files[i].id === id && files[i].owner === localStorage.getItem('user')) {
+      if (files[i].id === id && files[i].owner === user) {
         return files[i]
       }
     }

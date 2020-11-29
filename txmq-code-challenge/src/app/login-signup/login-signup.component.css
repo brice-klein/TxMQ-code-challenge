@@ -8,12 +8,56 @@
 
 #login {
   background-color: white;
-  padding: 120px;
+  height: 40vh;
+  width: 50vh;
+  display: flex;
+  flex-direction: column;
   border-radius: 5px;
+  box-shadow: 20px 20px 100px #493c63;
 }
 
 #sign-up {
   background-color: white;
   padding: 120px;
   border-radius: 5px;
+}
+
+.card-title {
+  display: flexbox;
+  font-size: x-large;
+  font-family: Roboto;
+  margin-top: 5%;
+  margin-left: 5%;
+}
+
+#email {
+  width: 70%;
+  border-width: 2px;
+  border-color: #564581;
+  border-radius: 5px;
+  box-shadow: 1px 1px #9b91b4;
+  padding: 18px;
+  margin-left: 3%;
+  margin-bottom: 10%;
+}
+
+#password {
+  width: 70%;
+  border-width: 2px;
+  border-color: #564581;
+  border-radius: 5px;
+  box-shadow: 1px 1px #9b91b4;
+  padding: 18px;
+  margin-left: -1%;
+}
+
+label {
+  position: relative;
+  bottom: 3.23vh;
+  left: 7vh;
+  background-color: white;
+  padding-left: 2px;
+  padding-right: 5px;
+  font-family: Roboto;
+  font-size: small;
 }

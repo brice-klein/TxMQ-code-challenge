@@ -90,8 +90,6 @@ export class AppComponent {
 
   }
 
-
-
   downloadElement(element: FileElement) {
     if (element.data && element.dataType) {
       let fileType = element.dataType;
