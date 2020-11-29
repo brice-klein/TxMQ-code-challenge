@@ -27,14 +27,22 @@
                 [(ngModel)]="userPassword"
             >
         </div>
-        <button
-            type="submit"
-            class="btn btn-primary"
-            (click)="tryLogin()"
-        >
-            Sign In
-        </button>
-        <button (click)="this.login = false; this.signUp = true">Sign Up</button>
+        <div class="buttons">
+            <button
+                type="submit"
+                class="btn btn-primary"
+                id="sign-in-button"
+                (click)="tryLogin()"
+            >
+                SIGN IN
+            </button>
+            <button
+                (click)="this.login = false; this.signUp = true"
+                id="sign-up-button"
+            >
+                SIGN UP
+            </button>
+        </div>
     </div>
 
     <div
